@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전화 연결</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .call-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .call-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>전화 연결하기</h2>
+        <p>연결할 번호: 010-7582-7271</p>
+        <button onclick="makeCall()" class="call-button">전화 걸기</button>
+    </div>
+
+    <script>
+        function makeCall() {
+            const phoneNumber = '01075827271';
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                window.location.href = `tel:${phoneNumber}`;
+            } else {
+                alert('모바일 기기에서만 전화 걸기가 가능합니다.');
+            }
+        }
+
+        // 페이지 로드 시 자동 실행 (선택사항)
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const autoCall = urlParams.get('autocall');
+            
+            if (autoCall === 'true') {
+                makeCall();
+            }
+        };
+    </script>
+</body>
+</html>
